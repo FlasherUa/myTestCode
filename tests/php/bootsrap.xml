@@ -1,0 +1,1 @@
+<phpunit colors="true" strict="true" bootstrap="../../app-php/bootstrap.php"></phpunit>
