@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <!--container for main application -->
+    <div id="main"></div>
+    <!--noscript warning -->
+    <noscript>
+        <div class="alert alert-danger" role="alert">
+            <strong>Sorry, this site requires JavaScript to run.<br></strong>
+            Please enable it or run with an other browser.
+        </div>
+    </noscript>
+</div>
+
+
+<!--
+
+  JS  TEMPLATES
+
+-->
+
+
+<!--
+
+    PAGE PARTS
+
+  -->
+<!--  Page container  -->
+<script id="Page" type="text/template">
+    <h1>%title%</h1>
+    <div>%description%</div>
+    %contents%
+</script>
+
+<!--  First page contents  -->
+<script id="First" type="text/template">
+    <div class="warn"></div>
+    <div class="alert alert-warning" role="alert">
+        <strong>%You are not logged%!</strong>%Please%,
+        <button class="btn btn-primary">%Register%</button>
+        %or login%
+    </div>
+</script>
+
+
+<!--
+
+    FORMS TEMPLATES
+
+-->
+<!-- Form Container -->
+<script id="FormOuter" type="text/template">
+    <div class="form">
+        <form onsubmit="App.form.onSubmit(this)">
+            %contents%
+            <button class="btn btn-primary" type="submit">%Submit%</button>
+        </form>
+    </div>
+</script>
+
+
+<!-- Input Container -->
+<script id="InputOuter" type="text/template">
+    <div class="form-group %alertClass%">
+        <label for="%id%">%title%</label>
+        %contents%
+        <small class="form-text text-muted">%alertText%</small>
+    </div>
+</script>
+
+<!--  Default Input for text,email, password -->
+<script id="input_text" type="text/template">
+    <input class="form-control" id="%id%" placeholder="%title%" type="%type%">
+</script>
+
+<!-- File Input..differs only by class...but let it be -->
+<script id="input_file" type="text/template">
+    <input class="form-control-file" id="%id%" type="file">
+</script>
+
+
+<!--
+
+    USER INFO TEMPLATES
+
+-->
+
+<!-- Try to load User Data like a usual script-->
+<script type="application/javascript" src="js-src/3dparty/ajax.js"></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/template.js"></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/validate.js"></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/form.js"></script>
+<script type="application/javascript" src="js-src/app-js/langs/en.js"></script>
+<script type="application/javascript" src="js-src/app-js/langs/ua.js"></script>
+<script type="application/javascript" src="js-src/app-js/models/user.model.js"></script>
+<script type="application/javascript" src="js-src/app-js/main.js"></script>
+</body>
+</html>
