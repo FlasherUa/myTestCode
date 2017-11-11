@@ -13,8 +13,8 @@ App.userModel =//JSON START
         {"Name": ["text", [5, 15]]},
         {"Email": ["email", [5, 15]]},
         {"Password": ["password", [8, 25]]},
-        {"Repeat Password ": ["password", [0, 25]]},
-        {"Phone": ["text", [5, 15]]},
+        {"Repeat Password": ["text", [0, 25]]},
+        {"Phone": ["text", [5, 20]]},
         {"Country": ["text", [0, 15]]},
         {"City": ["text", [0, 15]]},
         {"Photo": ["file", [0]]}

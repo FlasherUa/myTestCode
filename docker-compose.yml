@@ -26,5 +26,10 @@ services:
     volumes:
       - ./db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=docker
-      - MYSQL_DATABASE=db_runwaytest
+      #- MYSQL_ROOT_PASSWORD=oj7hoincdlknIGGUSh4237nkd97HJBcgdhTDcz
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=webforge
+     # - MYSQL_USER=webforgeuser
+     # - MYSQL_PASSWORD=0ny7GTGYSGV7534POIQImx9JHDSFGggcf26UYyhsg67
+      - MYSQL_ROOT_HOST=172.18.0.1
+     #- MYSQL_ALLOW_EMPTY_PASSWORD=yes

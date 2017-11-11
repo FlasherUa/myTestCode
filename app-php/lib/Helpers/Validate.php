@@ -25,7 +25,7 @@ class Validate
 
     public static function field($value, string $type, array $params = []): bool
     {
-        $validated = false;
+        $validated = true;
         switch ($type) {
             case "email":
                 $validated = self::email($value);

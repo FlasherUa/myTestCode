@@ -11,5 +11,15 @@ namespace Helpers;
 
 class FileUpload
 {
+    /**
+     * @param $tmpName
+     * @return string
+     */
+    public static function saveFile(): string
+    {
 
+       // if ()
+
+        return "0.00000";
+    }
 }

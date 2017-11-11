@@ -37,7 +37,6 @@ abstract class Controller
     public function __construct(array $data)
     {
         $this->_input = $data;
-        set_exception_handler(array($this, '_addError'));
 
     }
 
@@ -90,6 +89,7 @@ abstract class Controller
     /**
      * validates $this->data against $this->model
      * @param bool $strict
+     * @return array $out validated data fields
      */
     protected function _validateData(bool $strict = false)
     {
@@ -105,16 +105,23 @@ abstract class Controller
 
                 $value = $this->_input[$name] ?? null;
                 if ($value == null) {
-                    if (isset($params[1]) && $params[1][0] > 0  ) {
+                    if (isset($params[1]) && $params[1][0] > 0) {
+                        $out['_hasErrors'] = true;
                         $this->_addError("noValue", $name);
+                        continue;
+                    } else {
+                        //set default value
+
+                        $value = "";
                     }
-                    continue;
+
                 }
 
                 //validate value
                 $validated = \Helpers\Validate::field($value, $params[0], $params[1]);
                 if ($validated !== true) {
                     //not validated
+                    $out['_hasErrors'] = true;
                     $this->_addError("notValid", $name);
                 } else {
                     //validated ok
@@ -131,8 +138,7 @@ abstract class Controller
      * @param $code
      * @param string $message
      */
-    protected
-    function _addError($code, $message = "")
+    protected function _addError(string $code, string $message = "")
     {
         //init errors container
         isset($this->_output['errors']) || $this->_output['errors'] = [];
@@ -142,5 +148,14 @@ abstract class Controller
 
     }
 
+    /**
+     * Add response from controller execution
+     * @param $code
+     * @param string $message
+     */
+    protected function _addResponse($code, $message = "")
+    {
+        $this->_output[$code]=$message;
+    }
 
 }
