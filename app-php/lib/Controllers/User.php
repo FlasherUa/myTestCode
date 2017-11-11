@@ -14,8 +14,16 @@ class User extends \System\Controller
 
     public function userInfo()
     {
+        $userId = \Models\User::getSessionUserId();
+        if ($userId > 0) $data = \Models\User::getUserById($userId);
+        if (isset($data)) $this->_addResponse("logged", $data);
+        else $this->_addResponse("notLogged");
 
-        \Models\User::getUserById(1);
+    }
+
+    public function logout(){
+        \Models\User::logout();
+        $this->_addResponse("notLogged");
     }
 
 
@@ -41,11 +49,13 @@ class User extends \System\Controller
         }
 
         //save uploaded file
-        $fileName=\Helpers\FileUpload::saveFile();
-        $validatedData['Photo']=$fileName;
+        $fileName = \Helpers\FileUpload::saveFile();
+        $validatedData['Photo'] = $fileName;
 
         //all is ok, add to DB
         $newId = \Models\User::addUser($validatedData);
+
+        $this->_addResponse("registered", $validatedData);
         return $newId;
     }
 

@@ -34,7 +34,7 @@ abstract class Controller
 
     CONST _MODELS_PATH = "../../../html/js-src/app-js/models/";
 
-    public function __construct(array $data)
+    public function __construct(array $data=null)
     {
         $this->_input = $data;
 
@@ -153,7 +153,7 @@ abstract class Controller
      * @param $code
      * @param string $message
      */
-    protected function _addResponse($code, $message = "")
+    protected function _addResponse($code, $message =null)
     {
         $this->_output[$code]=$message;
     }

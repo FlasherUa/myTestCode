@@ -43,9 +43,9 @@ final class User extends \System\Db
     public static function getUserById(int $id): array
     {
 
-        $sql = "SELECT  `id`, `name`, `email`,`phone`,`country`,`city`,`photo`  FROM `:table` WHERE `id`=:id ";
-        $data = self::query($sql, ["id" => $id, "table" => self::$_usersTable]);
-
+        $sql = "SELECT  `id`, `Name`, `Email`,`Phone`,`Country`,`City`,`Photo`  FROM ".self::$_usersTable." WHERE `id`=:id ";
+        $stm = self::query($sql, ["id" => $id]);
+        $data= $stm->fetch();
 
         return $data;
     }
@@ -66,7 +66,7 @@ final class User extends \System\Db
         $r = self::query($sql, ["v1" => $pasw1, "v2" => $pasw2]);
 
         $sql = "INSERT INTO `" . self::$_usersTable . "` 
-        ( `name`, `email`, `passw`, `phone`, `country`, `city`, `photo`) 
+        ( `Name`, `Email`, `Password`, `Phone`, `Country`, `City`, `Photo`) 
         VALUES ( :Name, :Email, :Password, :Phone, :Country, :City, :Photo);";
         $data['Password'] = $passwd;
         unset($data['Repeat Password']);
@@ -84,16 +84,46 @@ final class User extends \System\Db
      */
     private static function _saveToSession($userId)
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+        self::_session_start();
         $_SESSION['id'] = $userId;
     }
 
     public static function login($data)
     {
 
-        $is_ok = \password_verify($data['Password'], $dbPass);
+        //  $is_ok = \password_verify($data['Password'], $dbPass);
+
+    }
+
+    /**
+     * Returns user id from session, if no 0
+     * @return int
+     */
+    public static function getSessionUserId(): int
+    {
+        self::_session_start();
+        $id = $_SESSION['id'] ?? 0;
+        return $id;
+    }
+
+    public static function logout()
+    {
+        self::_session_start();
+        $_SESSION = array();
+        @session_destroy();
+    }
+
+    /**
+     * Starts session
+     * @return array session vars
+     */
+    private static function _session_start(): array
+    {
+
+        if (session_status() == PHP_SESSION_NONE && !isset($_SESSION)) {
+            @session_start();
+        }
+        return $_SESSION;
 
     }
 }

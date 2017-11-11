@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 class TestUser extends TestCase
 {
 
+
     private static $data = ["Name" => "Seruga", "Password" => "12345Az", "City" => "Tallas", "Email" => "1@11.com"];
 
     public function testRegisterErrors(): void
@@ -56,7 +57,7 @@ class TestUser extends TestCase
     {
 
         //delete users by email   "noexistent@email.com"
-
+        //in case it was not deleted after prev test attempt
         userTestHelper::deleteByEmail("noexistent@email.com");
 
         $data =& static::$data;
@@ -67,16 +68,30 @@ class TestUser extends TestCase
 
 
         $this->assertTrue(
-            strpos($response, '{"errors"') === 0,
-            "1. data has no errors but must"
+            $response->registered->Name == "Seruga",
+            "5. user not registered"
         );
 
+
+        //userTestHelper::deleteByEmail("noexistent@email.com");
     }
 
+    /**
+     * @depends testRegister
+     */
     public function testGetUserInfo(): void
     {
+        $_SESSION['id'] = 1;
+        $controller = new \Controllers\User();
+        $controller->userInfo();
+        $out = $controller->output();
 
+        $response = json_decode($out);
 
+        $this->assertTrue(
+            isset($response->logged->Name) ,
+            "5. user not registered"
+        );
     }
 
 
@@ -98,9 +113,10 @@ class TestUser extends TestCase
     }
 
 
-    private function _prepareUploadTest(){
+    private function _prepareUploadTest()
+    {
         $temp_file = tempnam(sys_get_temp_dir(), 'Tux');
-        copy ("testfile.jpg", "tmpfile");
+        copy("testfile.jpg", "tmpfile");
         $_FILES = [
             'filename' => [
                 'name' => $this->uploadedFile,
@@ -122,7 +138,7 @@ class userTestHelper extends \System\Db
 
         $sql = "DELETE FROM `user_yiutr6` WHERE `email` LIKE :email ;";
 
-        self::query($sql, ["email"=> $email]);
+        self::query($sql, ["email" => $email]);
     }
 
 }

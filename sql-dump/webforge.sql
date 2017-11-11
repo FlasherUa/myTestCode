@@ -40,16 +40,21 @@ CREATE TABLE IF NOT EXISTS `sa3dp5opkdn8` (
 
 CREATE TABLE IF NOT EXISTS `user_yiutr6` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100)  NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `passw` varchar(255) NOT NULL,
-  `phone` varchar(25) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `photo` decimal(5,4) NOT NULL,
+  `Name` varchar(100)  NOT NULL,
+  `Email` varchar(150) NOT NULL,
+  `Password` varchar(64) NOT NULL,
+  `Phone` varchar(25) NOT NULL,
+  `Country` varchar(25) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Photo` decimal(5,4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--Tests value
+--INSERT INTO `user_yiutr6` (`id`, `Name`, `Email`, `Password`, `Phone`, `Country`, `City`, `Photo`) VALUES
+--(1, 'serki', '1@1.com', '23sadasdasdasd', '', '', '', 0.0000);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
