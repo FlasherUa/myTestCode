@@ -1,1 +1,0 @@
-valtest=TestCase("validateTest")

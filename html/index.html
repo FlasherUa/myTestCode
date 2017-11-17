@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/application.1.css" >
 </head>
 <body>
 
@@ -39,19 +41,23 @@
   -->
 <!--  Page container  -->
 <script id="Page" type="text/template">
+    <button onclick="App.Router('switchLang')" title="%langHint%" class="btn btn-warning lang">%nextLang%</button>
     <h1>%title%</h1>
     <div>%description%</div>
+
     %contents%
+
 </script>
 
 <!--  First page contents  -->
 <script id="First" type="text/template">
     <div class="warn"></div>
     <div class="alert alert-warning" role="alert">
-        <strong>%You are not logged%!</strong>%Please%,
-        <button class="btn btn-primary">%Register%</button>
-        %or login%
+        <strong>%You are not logged%</strong><br>%Please%
+        <a role="button" class="btn btn-primary" href="#register" on-click="App.route('register')">%Register%</a>
+        %or%    <a  role="button" class="btn btn-primary" href="#login" on-click="App.route('login')">%Login%</a>
     </div>
+    %contents%
 </script>
 
 
@@ -63,9 +69,11 @@
 <!-- Form Container -->
 <script id="FormOuter" type="text/template">
     <div class="form">
-        <form onsubmit="App.form.onSubmit(this)">
+
+        <h3>%title%</h3>
+        <form onsubmit="return App.Router('submit', [this, '%action%'])" name="form">
             %contents%
-            <button class="btn btn-primary" type="submit">%Submit%</button>
+            <button class="btn btn-primary" type="submit" >%Submit%</button>
         </form>
     </div>
 </script>
@@ -73,21 +81,21 @@
 
 <!-- Input Container -->
 <script id="InputOuter" type="text/template">
-    <div class="form-group %alertClass%">
-        <label for="%id%">%title%</label>
+    <div class="form-group row " id="container_%id%">
+        <label for="%id%" class="col-sm-2 col-form-label">%title%<span class="required">%required%</span></label>
         %contents%
-        <small class="form-text text-muted">%alertText%</small>
+        <small class="form-text text-muted d-none">%errMsg%</small>
     </div>
 </script>
 
 <!--  Default Input for text,email, password -->
 <script id="input_text" type="text/template">
-    <input class="form-control" id="%id%" placeholder="%title%" type="%type%">
+    <input class="form-control col-sm-10"  name="%id%" id="%id%" placeholder="%title%" type="%type%">
 </script>
 
 <!-- File Input..differs only by class...but let it be -->
 <script id="input_file" type="text/template">
-    <input class="form-control-file" id="%id%" type="file">
+    <input class="form-control-file col-sm-10"  name="%id%" id="%id%" type="file">
 </script>
 
 
@@ -98,13 +106,16 @@
 -->
 
 <!-- Try to load User Data like a usual script-->
-<script type="application/javascript" src="js-src/3dparty/ajax.js"></script>
-<script type="application/javascript" src="js-src/app-js/lib-js/template.js"></script>
-<script type="application/javascript" src="js-src/app-js/lib-js/validate.js"></script>
-<script type="application/javascript" src="js-src/app-js/lib-js/form.js"></script>
-<script type="application/javascript" src="js-src/app-js/langs/en.js"></script>
-<script type="application/javascript" src="js-src/app-js/langs/ua.js"></script>
-<script type="application/javascript" src="js-src/app-js/models/user.model.js"></script>
-<script type="application/javascript" src="js-src/app-js/main.js"></script>
+<script type="application/javascript" src="js-src/3dparty/ajax.js" ></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/Template.js" ></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/Validate.js" ></script>
+<script type="application/javascript" src="js-src/app-js/lib-js/Router.js" ></script>
+<script type="application/javascript" src="js-src/app-js/langs/en.js" ></script>
+<script type="application/javascript" src="js-src/app-js/langs/ua.js" ></script>
+<script type="application/javascript" src="js-src/app-js/models/user.model.js" ></script>
+
+<script type="application/javascript" src="js-src/app-js/Controllers/Pages.js" ></script>
+<script type="application/javascript" src="js-src/app-js/Controllers/Submit.js" ></script>
+<script type="application/javascript" src="js-src/app-js/main.js" ></script>
 </body>
 </html>

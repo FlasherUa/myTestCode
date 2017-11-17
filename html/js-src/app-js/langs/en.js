@@ -5,14 +5,19 @@
 App.LANGS || (App.LANGS = {})
 App.LANGS.EN = {
 
-    errors: {
-        "isRequired": "The value is required. Please fulfill",
-        "tooShort": "The value is too short. Please provide at least %param% symbols",
-        "tooLong": "The value is too long. Please provide no more than least %param% symbols",
-        "badEmail": "This seems no to be valid email. Please check",
-        "badPhone": "This seems no to be valid phone. Please check",
+    "welcome1": "Welcome to my demo site!",
+    "descr1": "Please visit <a href='https://github.com/FlasherUa/myTestCode' target='_blank'>this project GitHub</a> for  documentation and source code",
+    "loginForm": "Login Form",
+    "registerForm": "Register Form",
+    "nextLang":"Укр",
+    "langHint":"Ввімкнути Українську мову",
 
-    }
+    "err_file":"Please select image of .jpg, .png or .gif type",
+    "err_text":"Please enter a value",
+    "err_password":"Please enter a value including big and small latin letters and digits, 8-15 symbols",
+    "err_email":"Please enter a valid email "
+
+
 
 
 };

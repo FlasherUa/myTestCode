@@ -37,15 +37,35 @@ final class User extends \System\Db
     }
 
     /**
+     * @param $email
+     * @return array|mixed
+     */
+    private static function getUserDataByEmail($email)
+    {
+        $userData = 0;
+        $sql = "SELECT id,Name,Email,Phone,City, Country,Photo FROM `" . self::$_usersTable . "` WHERE `Email`=:email ";
+
+        $st = self::query($sql, ["email" => $email]);
+
+
+        $data = $st->fetch();
+        if ($data !== false) {
+            $userData = $data;
+        }
+        return $userData;
+    }
+
+
+    /**
      * @param int $id
      * @return array of user data  or []
      */
     public static function getUserById(int $id): array
     {
 
-        $sql = "SELECT  `id`, `Name`, `Email`,`Phone`,`Country`,`City`,`Photo`  FROM ".self::$_usersTable." WHERE `id`=:id ";
+        $sql = "SELECT  `id`, `Name`, `Email`,`Phone`,`Country`,`City`,`Photo`  FROM " . self::$_usersTable . " WHERE `id`=:id ";
         $stm = self::query($sql, ["id" => $id]);
-        $data= $stm->fetch();
+        $data = $stm->fetch();
 
         return $data;
     }
@@ -88,12 +108,35 @@ final class User extends \System\Db
         $_SESSION['id'] = $userId;
     }
 
+    /**
+     * Logins user with password& email
+     * @param $data
+     * @return array|int|mixed user Data object or 0
+     */
     public static function login($data)
     {
+        //prepare query
+        $pasw2 = \hash("sha256", $data['Password'] . $data['Email']);
+        $sql = "SELECT `p2opiujdn` AS p FROM `sa3dp5opkdn8` WHERE oiukmm98 =:v1;";
+        $st = self::query($sql, ["v1" => $pasw2]);
+        $resp = $st->fetch();
 
-        //  $is_ok = \password_verify($data['Password'], $dbPass);
+        //no such item
+        if ($resp === false) return 0;
+
+        $is_ok = \password_verify($data['Password'], $resp['p']);
+        //bad password
+        if ($is_ok !== true) return 0;
+
+        //get user Data
+        $userData = self::getUserDataByEmail($data['Email']);
+
+        if (isset ($userData['id'])) self::_saveToSession($userData['id']);
+
+        return $userData;
 
     }
+
 
     /**
      * Returns user id from session, if no 0

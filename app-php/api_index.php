@@ -45,6 +45,7 @@ if (isset($action) && method_exists($className, $action)) {
     $controller = new $className($data);
 
     $controller->$action($data);
+    header ("Content-type:application/json");
     //output result
     echo $controller->output();
 

@@ -29,7 +29,7 @@ class TestUser extends TestCase
         );
 
         $data["Password"] = "Narnia123";
-
+        $data["Repeat Password"] = "Narnia123";
 
         $response = $this->_doRegister($data);
 
@@ -89,9 +89,40 @@ class TestUser extends TestCase
         $response = json_decode($out);
 
         $this->assertTrue(
-            isset($response->logged->Name) ,
+            isset($response->logged->Name),
             "5. user not registered"
         );
+    }
+
+    /**
+     * @depends testRegister
+     */
+    public function testLogin(): void
+    {
+        $data = [];
+        $data["Email"] = "noexistent@email.com";
+        $data["Password"] = "Narnia123";
+
+        if (isset ($_SESSION['id'])) unset($_SESSION['id']);
+        $controller = new \Controllers\User($data);
+        $controller->login();
+        $out = $controller->output();
+
+        $response = json_decode($out);
+
+        $this->assertTrue(
+            isset($response->logged->Name),
+            "6. user not logged"
+        );
+
+
+        //test session
+
+        $this->assertTrue(
+            isset($_SESSION['id']),
+            "6. user not logged"
+        );
+
     }
 
 

@@ -21,7 +21,31 @@ class User extends \System\Controller
 
     }
 
-    public function logout(){
+    /**
+     * @throws \Helpers\InvalidDataException
+     */
+    public function login()
+    {
+        $this->_loadModel("user");
+        $this->_model = array_slice($this->_model, 1, 2);
+        $validatedData = $this->_validateData(true);
+
+        //if validations errors - break
+        if (isset($validatedData['_hasErrors'])) return;
+
+        $userData = \Models\User::login($validatedData);
+        if (isset($userData['Name']) ){
+            //save to session
+
+
+            $this->_addResponse("logged", $userData);
+
+        } else $this->_addResponse("notLogged");
+
+    }
+
+    public function logout()
+    {
         \Models\User::logout();
         $this->_addResponse("notLogged");
     }

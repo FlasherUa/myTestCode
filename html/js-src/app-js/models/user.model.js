@@ -8,15 +8,19 @@
  * JSON START - marker for php to get clean JSON string, from this javascript file
  * @type {Array}
  * */
-App.userModel =//JSON START
+window.App || (window.App={})//fix for module testing
+var App  =window.App
+
+App.models = {};
+App.models.user =//JSON START
     [
-        {"Name": ["text", [5, 15]]},
-        {"Email": ["email", [5, 15]]},
+        {"Name": ["text", [5, 50]]},
+        {"Email": ["email", [5, 50]]},
         {"Password": ["password", [8, 25]]},
-        {"Repeat Password": ["text", [0, 25]]},
+        {"Repeat Password": ["password", [8, 25]]},
         {"Phone": ["text", [5, 20]]},
-        {"Country": ["text", [0, 15]]},
-        {"City": ["text", [0, 15]]},
+        {"Country": ["text", [0, 25]]},
+        {"City": ["text", [0, 25]]},
         {"Photo": ["file", [0]]}
 
     ]

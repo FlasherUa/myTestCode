@@ -8,7 +8,7 @@
  *
  */
 
-App = {};
+typeof App!=="undefined" || (window.App={});
 
 +function () {
 
@@ -18,55 +18,52 @@ App = {};
      *
      */
     var init = function () {
+        App.curLang = "EN";
+
         //try to get user data
-        ajax.get("api", onApiLoaded);
-
-    }
+        ajax.get("api", null, onApiLoaded);
 
 
+        window.addEventListener("hashchange", function () {
+            route(window.location.hash)
+        });
+
+        route(window.location.hash)
+    };
+
+    var route = function (hash) {
+        App.state = hash;
+        if (typeof App.Router=="undefined") return;//we inside tests perhaps
+        App.Router(App.state)
+    };
     /**
      *
      * @param {Object} responce server ajax responce
      */
     var onApiLoaded = function (responce) {
+        if (responce=== "NOT FOUND") return
+        try {
+            var data = JSON.parse(responce);
+        } catch (e) {
+            console.error(e);
+            return
+        }
 
-        if (responce && responce.data) {
+
+        if (typeof data.notLogged === "undefined") {
             //user is logged - show user data
-            printUserPageController(responce.data)
+            App.userData = data;
+            window.location.hash = "#userInfo"
         } else {
             //redirect to login/register page
-            printLoginPageController(responce.data)
+            window.location.hash = "#login"
 
         }
     };
 
-    /**
-     * outputs user data
-     * @param {Object} data
-     */
-     function printUserPageController (data) {
-
-
-    };
-    /**
-     * outputs user data
-     * @param {Object} data
-     */
-     function  printLoginPageController (data) {
-
-
-    };
-
-
-
-    /**
-     * load model
-     * parse element
-     * parse outer container
-     */
-
 
     init()
 
-}();
+}
+();
 

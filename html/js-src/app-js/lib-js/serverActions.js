@@ -1,4 +1,4 @@
-App.form = (function () {
+App.serverActions = (function () {
 
 
     var form = {
