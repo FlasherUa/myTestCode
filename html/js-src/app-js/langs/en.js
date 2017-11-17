@@ -6,6 +6,7 @@ App.LANGS || (App.LANGS = {})
 App.LANGS.EN = {
 
     "welcome1": "Welcome to my demo site!",
+    "welcome2": "Welcome to my demo site, ",
     "descr1": "Please visit <a href='https://github.com/FlasherUa/myTestCode' target='_blank'>this project GitHub</a> for  documentation and source code",
     "loginForm": "Login Form",
     "registerForm": "Register Form",

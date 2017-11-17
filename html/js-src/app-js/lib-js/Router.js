@@ -12,7 +12,8 @@ App.Router = function (state, params) {
             break;
 
         case "#userInfo" :
-            App.Controllers.Pages.printUserPageController(data);
+            if (typeof App.userData==="undefined") App.Controllers.Pages.printLoading();
+            else App.Controllers.Pages.printUserPageController();
             break;
 
         case "switchLang" :
@@ -23,9 +24,10 @@ App.Router = function (state, params) {
             break;
 
         case "#login" :
-        default:
             App.Controllers.Pages.printLoginPageController();
             break;
+
+        default: App.Controllers.Pages.printLoading();
     }
 
     ;

@@ -3,8 +3,8 @@
  */
 
 
-window.App || (window.App={})//fix for module testing
-var App  =window.App
+window.App || (window.App = {})//fix for module testing
+var App = window.App
 App.Controllers = {};
 App.Controllers.Pages = (function () {
 
@@ -20,10 +20,35 @@ App.Controllers.Pages = (function () {
      * outputs user data
      * @param {Object} data
      */
-    var printUserPageController = function (data) {
+    var printUserPageController = function () {
+        var userData = App.userData;
 
+        App.Template.out({
+            //template #id
+            "Page": {
+                //template values
+                title: lang("welcome2") + userData.Name + "!",
+                description: lang("descr1"),
+                nextLang: lang("nextLang"),
+                langHint: lang("langHint"),
 
+                contents: {
+                    //template #id
+                    "Logged": {
+                        Name: userData.Name,
+                        data: userData
+
+                    }
+                }
+            }
+        });
     };
+    /**
+     * loading state
+     */
+    var printLoading = function () {
+
+    }
 
     /**
      * outputs register foem
@@ -76,7 +101,7 @@ App.Controllers.Pages = (function () {
             "FormOuter": {
                 title: lang("loginForm"),
                 contents: contents,
-                action:"login"
+                action: "login"
             }
 
         }
@@ -96,7 +121,7 @@ App.Controllers.Pages = (function () {
             "FormOuter": {
                 title: lang("registerForm"),
                 contents: contents,
-                action:"register"
+                action: "register"
             }
 
         }
@@ -173,7 +198,7 @@ App.Controllers.Pages = (function () {
      * parse outer container
      */
     function lang(val, group) {
-       App.curLang || (App.curLang = "EN")
+        App.curLang || (App.curLang = "EN")
         return typeof App.LANGS[App.curLang][val] !== "undefined" ? App.LANGS[App.curLang][val] : val;
     }
 
@@ -182,9 +207,11 @@ App.Controllers.Pages = (function () {
      */
     return {
         switchLang: switchLang,
+        printLoading:printLoading,
         printLoginPageController: printLoginPageController,
         printRegisterPageController: printRegisterPageController,
         printUserPageController: printUserPageController,
-        lang:lang
+        lang: lang
     };
-})();
+})
+();

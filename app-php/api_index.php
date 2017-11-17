@@ -38,6 +38,11 @@ $index = array_search($query, $_ALLOWED_ACTIONS);
 if ($index !== false) $action = $_ALLOWED_ACTIONS[$index];
 $data = $_POST;
 
+//fix for space in var name issue
+if (isset($data['Repeat_Password'])) {
+    $data['Repeat Password'] = $data['Repeat_Password'];
+    unset ($data['Repeat_Password']);
+}
 
 if (isset($action) && method_exists($className, $action)) {
 
@@ -45,7 +50,7 @@ if (isset($action) && method_exists($className, $action)) {
     $controller = new $className($data);
 
     $controller->$action($data);
-    header ("Content-type:application/json");
+    header("Content-type:application/json");
     //output result
     echo $controller->output();
 

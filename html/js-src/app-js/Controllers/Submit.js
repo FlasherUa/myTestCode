@@ -23,20 +23,9 @@ App.Controllers.Submit = (function () {
     var submitForm = function (form, action) {
         var data = new FormData(form);
 
-        ajax.post("api/" + action, data, onSubmit, false);
+        ajax.post("api/" + action, data, App.onResponse, false);
     }
 
-    var onSubmit = function (responce) {
-        if (responce === "NOT FOUND") return
-        try {
-            var data = JSON.parse(responce);
-        } catch (e) {
-            console.error(e);
-            return
-        }
-
-
-    }
 
 
     /**

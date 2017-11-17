@@ -79,6 +79,10 @@ class User extends \System\Controller
         //all is ok, add to DB
         $newId = \Models\User::addUser($validatedData);
 
+        //clear password fields
+        unset($validatedData['Password']);
+        unset($validatedData['Repeat Password']);
+
         $this->_addResponse("registered", $validatedData);
         return $newId;
     }

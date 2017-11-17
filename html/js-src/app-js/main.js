@@ -8,7 +8,7 @@
  *
  */
 
-typeof App!=="undefined" || (window.App={});
+typeof App !== "undefined" || (window.App = {});
 
 +function () {
 
@@ -21,7 +21,7 @@ typeof App!=="undefined" || (window.App={});
         App.curLang = "EN";
 
         //try to get user data
-        ajax.get("api", null, onApiLoaded);
+        ajax.get("api", null, App.onResponse);
 
 
         window.addEventListener("hashchange", function () {
@@ -33,7 +33,7 @@ typeof App!=="undefined" || (window.App={});
 
     var route = function (hash) {
         App.state = hash;
-        if (typeof App.Router=="undefined") return;//we inside tests perhaps
+        if (typeof App.Router == "undefined") return;//we inside tests perhaps
         App.Router(App.state)
     };
     /**
@@ -41,24 +41,7 @@ typeof App!=="undefined" || (window.App={});
      * @param {Object} responce server ajax responce
      */
     var onApiLoaded = function (responce) {
-        if (responce=== "NOT FOUND") return
-        try {
-            var data = JSON.parse(responce);
-        } catch (e) {
-            console.error(e);
-            return
-        }
 
-
-        if (typeof data.notLogged === "undefined") {
-            //user is logged - show user data
-            App.userData = data;
-            window.location.hash = "#userInfo"
-        } else {
-            //redirect to login/register page
-            window.location.hash = "#login"
-
-        }
     };
 
 
