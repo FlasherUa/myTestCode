@@ -57,9 +57,6 @@ This will uglify and minify js,css, copy only necessary files to folder
 
 Start production docker
 
-
-
-Start test docker 
 `>docker-compose up`
 
 Than visit  

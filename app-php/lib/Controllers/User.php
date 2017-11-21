@@ -34,7 +34,7 @@ class User extends \System\Controller
         if (isset($validatedData['_hasErrors'])) return;
 
         $userData = \Models\User::login($validatedData);
-        if (isset($userData['Name']) ){
+        if (isset($userData['Name'])) {
             //save to session
 
 
@@ -74,6 +74,10 @@ class User extends \System\Controller
 
         //save uploaded file
         $fileName = \Helpers\FileUpload::saveFile();
+        if ($fileName === false) {
+            $this->_addError("notValid", "Photo");
+            return 0;
+        }
         $validatedData['Photo'] = $fileName;
 
         //all is ok, add to DB

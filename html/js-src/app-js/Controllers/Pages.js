@@ -16,37 +16,14 @@ App.Controllers.Pages = (function () {
         else App.curLang = "EN"
     };
 
-    /**
-     * outputs user data
-     * @param {Object} data
-     */
-    var printUserPageController = function () {
-        var userData = App.userData;
 
-        App.Template.out({
-            //template #id
-            "Page": {
-                //template values
-                title: lang("welcome2") + userData.Name + "!",
-                description: lang("descr1"),
-                nextLang: lang("nextLang"),
-                langHint: lang("langHint"),
-
-                contents: {
-                    //template #id
-                    "Logged": {
-                        Name: userData.Name,
-                        data: userData
-
-                    }
-                }
-            }
-        });
-    };
     /**
      * loading state
      */
     var printLoading = function () {
+        //print loading
+        var loadingBlock = {"Loading": ""}
+        printLoginPageController(loadingBlock);
 
     }
 
@@ -58,6 +35,12 @@ App.Controllers.Pages = (function () {
 
     };
 
+    var logout = function () {
+        //server logout
+        ajax.get("api/logout",null,App.onResponse)
+        //reload page
+
+    }
 
     /**
      * outputs login form
@@ -207,10 +190,10 @@ App.Controllers.Pages = (function () {
      */
     return {
         switchLang: switchLang,
-        printLoading:printLoading,
+        printLoading: printLoading,
+        logout: logout,
         printLoginPageController: printLoginPageController,
         printRegisterPageController: printRegisterPageController,
-        printUserPageController: printUserPageController,
         lang: lang
     };
 })

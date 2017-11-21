@@ -118,8 +118,9 @@
 -->
 
 <script id="userInfo" type="text/template">
+    <div class="container"><h3>%Your data%</h3>
     <table class="table table-hover">
-        <caption>%Your data%</caption>
+
         <thead>
         <tr>
             <th>%Field%</th>
@@ -128,12 +129,13 @@
         </thead>
         %contents%
     </table>
+    </div>
 </script>
 
 
 <script id="userInfo_field" type="text/template">
     <tr>
-        <th>%fieldName%</th>
+        <th>%title%</th>
         <td>%contents%</td>
     </tr>
 </script>
@@ -147,11 +149,11 @@
 </script>
 
 <script id="userInfo_field_photo" type="text/template">
-    <a href="%contents%" target="_blank"> <img src="%contents%" style="max-width: 200px"/></a>
+    <a href="/uploads/%contents%" target="_blank"><img src="/uploads/%contents%" style="max-height: 100px" alt="avatar"/></a>
 </script>
 
 <script id="userInfo_field_photo_not" type="text/template">
-    <img src="uploads/no-avatar.jpg" style="max-width: 200px"/>
+    <img src="uploads/no-avatar.jpg" style="max-height: 100px"/>
     </script>
 
 
@@ -167,6 +169,7 @@
 <script type="application/javascript" src="js-src/app-js/models/user.model.js"></script>
 <script type="application/javascript" src="js-src/app-js/Controllers/Pages.js"></script>
 <script type="application/javascript" src="js-src/app-js/Controllers/Submit.js"></script>
+<script type="application/javascript" src="js-src/app-js/Controllers/userInfo.js"></script>
 <script type="application/javascript" src="js-src/app-js/main.js"></script>
 </body>
 </html>

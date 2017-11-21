@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `user_yiutr6` (
   `Phone` varchar(25) NOT NULL,
   `Country` varchar(25) NOT NULL,
   `City` varchar(50) NOT NULL,
-  `Photo` decimal(5,4) NOT NULL,
+  `Photo` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  UNIQUE KEY `Email` (`Email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --Tests value

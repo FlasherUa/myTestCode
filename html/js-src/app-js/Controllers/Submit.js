@@ -78,6 +78,8 @@ App.Controllers.Submit = (function () {
      * @param form
      */
     var clearAllErrors = function (form) {
+        form || (form=document.getElementsByTagName("form")[0])
+
         var fields = form.getElementsByClassName("alert");
 
         while (true) {
@@ -94,5 +96,5 @@ App.Controllers.Submit = (function () {
     /**
      * @exports
      */
-    return {submit: submit, addFormErrors: addFormErrors}
+    return {submit: submit, addFormErrors: addFormErrors, clearAllErrors:clearAllErrors}
 })();

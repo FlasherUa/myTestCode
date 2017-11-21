@@ -14,9 +14,9 @@ var App  =window.App
 App.models = {};
 App.models.user =//JSON START
     [
-        {"Name": ["text", [5, 50]]},
+        {"Name": ["text", [3, 50]]},
         {"Email": ["email", [5, 50]]},
-        {"Password": ["password", [8, 25]]},
+        {"Password": ["password", [5, 25]]},
         {"Repeat Password": ["password", [8, 25]]},
         {"Phone": ["text", [5, 20]]},
         {"Country": ["text", [0, 25]]},

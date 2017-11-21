@@ -12,7 +12,8 @@ App.Router = function (state, params) {
             break;
 
         case "#userInfo" :
-            if (typeof App.userData==="undefined") App.Controllers.Pages.printLoading();
+            //if data not loaded
+            if (typeof App.userData==="undefined") window.location.hash="#login";
             else App.Controllers.Pages.printUserPageController();
             break;
 
@@ -25,6 +26,10 @@ App.Router = function (state, params) {
 
         case "#login" :
             App.Controllers.Pages.printLoginPageController();
+            break;
+
+        case "#logout" :
+            App.Controllers.Pages.logout();
             break;
 
         default: App.Controllers.Pages.printLoading();

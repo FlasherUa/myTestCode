@@ -19,7 +19,7 @@ App.onResponse = (function () {
      */
     var onResponse = function (response) {
         var data = App.helpers.getResponse(response);
-        if (!data) return
+        if (!data) return;
 
         var key = App.helpers.key(data);
 
@@ -28,9 +28,17 @@ App.onResponse = (function () {
 
             //redirect to login/register page
             case "notLogged":
-                doRoute("#login")
+                if (App.state !=="#register" && App.state !=="#login" ) doRoute("#login");
                 break;
 
+            //server found errors - show to  user
+            case "errors":
+                App.Controllers.Submit.clearAllErrors()
+                App.Controllers.Submit.addFormErrors(data[key])
+                break;
+
+            //user is registered & logged - show user data
+            case "registered":
             //user is logged - show user data
             case "logged":
                 App.userData = data[key];
