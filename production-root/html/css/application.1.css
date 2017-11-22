@@ -1,0 +1,13 @@
+.required {
+    color: #000000
+}
+
+.alert .d-none {
+    display: inherit !important;
+}
+
+.lang {
+    float: right;
+    top: 1em;
+    position:relative;
+}

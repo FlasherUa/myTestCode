@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `user_yiutr6` (
   `Photo` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 --Tests value
 --INSERT INTO `user_yiutr6` (`id`, `Name`, `Email`, `Password`, `Phone`, `Country`, `City`, `Photo`) VALUES

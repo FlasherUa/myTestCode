@@ -1,5 +1,0 @@
-ErrorDocument 500 /errordocs/server_error.html
-ErrorDocument 404 /errordocs/server_error.html
-ErrorDocument 401 /errordocs/server_error.html
-ErrorDocument 403 /errordocs/server_error.html
-

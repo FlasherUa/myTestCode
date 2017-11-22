@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    '../../html/bind/out.js': ['../../html/js-src/**/*.js']
+                    '../../production-root/html/bind/out.js': ['../../html/js-src/**/*.js']
                 }
             }
         },
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 },
                 files: {
 
-                    '../../html/index_min.html': '../../html/index_production.html'
+                    '../../production-root/html/index.html': '../../html/index_production.html'
 
                 }
             }
