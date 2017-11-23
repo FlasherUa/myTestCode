@@ -44,8 +44,8 @@ typeof App !== "undefined" || (window.App = {});
 
     };
 
-
-    init()
+//start app
+    window.onload = init
 
 }
 ();
