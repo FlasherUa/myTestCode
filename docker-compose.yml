@@ -2,18 +2,13 @@ version: '2'
 
 services:
   webserver:
-    build: ./docker-dev
-    environment:
-        XDEBUG_CONFIG: remote_host=172.18.0.1
-        PHP_IDE_CONFIG: "serverName=Docker-dev"
-        PHP_DEV_PROD: "development"
-
+    build: ./docker-prod
     image: test
     ports:
       - "8800:80"
       - "443:443"
     volumes:
-      - /var/www/html/webforge-test/:/var/www/
+      - ./production-root/:/var/www/
     links:
       - db
 
@@ -22,8 +17,7 @@ services:
     ports:
       - "4407:3306"
     volumes:
-      - ./db:/var/lib/mysql
+      - ./production-root/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=webforge
-      - MYSQL_ROOT_HOST=172.18.0.1
+      - MYSQL_ROOT_PASSWORD=docker
+      - MYSQL_DATABASE=db_runwaytest
