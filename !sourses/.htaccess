@@ -1,0 +1,13 @@
+ErrorDocument 404 /404.html
+
+<Files "^(*.php|*.php[^.]*)">
+    order deny,allow
+    deny from all
+</Files>
+
+Options -Multiviews
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^api[/]?(.*)$ css/theme/theme.1.css?action=$1
+
