@@ -1,11 +1,7 @@
 # myTestCode
 
-This is test project
-
-*Some things may look not optimal because it is for my learning. 
-For the real project I would do things "quick-and-dirty" without  experiments.* 
-
-[Demo Source Codes](../!sources)
+This is my test project
+Here  [PHP&JS Source Codes written by me](../tree/master/!sources)
 
 **Description**
 
@@ -22,7 +18,9 @@ Minuses:
 - Page may be milliseconds slower than clean HTML.  
 
 It seems to satisfy the assigment needs and looks less [collegues projects](https://www.google.com.ua/search?dcr=0&ei=3dr-WcfKNujM6AT10azYDA&q=github+webmasters+forge+%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5&oq=github+webmasters+forge+%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5&gs_l=psy-ab.3...62369.64715.0.65171.8.8.0.0.0.0.134.906.0j8.8.0....0...1.1.64.psy-ab..1.0.0....0.TEYegDlGjfM)
-   
+*Some things may look not optimal because it is for my learning.
+For the real project I would do things "quick-and-dirty" without  experiments.*
+
  
 **Front-end:**  JavaScript (Vanilla, 4kB gzipped). Includes simple router, ajax support, template engine, forms generator & validator, multilanguage support.  
 
