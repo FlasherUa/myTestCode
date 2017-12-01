@@ -2,9 +2,13 @@
 
 This is my test project
 
-Here  [PHP&JS Source Codes written by me](https://github.com/FlasherUa/myTestCode/tree/master/!sourses)
+Here  [PHP&JS Project Source Codes written by me](https://github.com/FlasherUa/myTestCode/tree/master/!sourses)
+(Tests and all config files are mostly mine too)
 
 **Description**
+
+The assigment was to build a client registration app with server and client validation, login form, multilanguage interface.
+No frameworks(exept Bootsrap & jQuery(I had not not used id, it`s not interesting))
 
 I used SAP (Single Page Application) architecture. 
 
@@ -23,7 +27,7 @@ It seems to satisfy the assigment needs and looks less [collegues projects](http
 For the real project I would do things "quick-and-dirty" without  experiments.*
 
  
-**Front-end:**  JavaScript (Vanilla, 4kB gzipped). Includes simple router, ajax support, template engine, forms generator & validator, multilanguage support.  
+**Front-end:**  JavaScript (Vanilla, 4kB gzipped). Includes simple router, ajax support, template engine, forms generator by model & validator, multilanguage support. Templates, language data.
 
 **Back-end:** php7, PDO, mysql 
 Server only holds data API (JSON). 
